@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nashussa-cisco-app
+  name: nashussa-cisco-app
+  namespace: nashussa-project # namespace 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nashussa-cisco-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nashussa-cisco-app
+    spec:
+      containers:
+      - image: docker.io/naseeraman123/nashussa:latest
+        name: nashussa
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always # everytime pull image 
+        resources: # restricting pod container in term of resoruces 
+          requests:
+            cpu: 100m
+            memory: 200M
+          limits:
+            cpu: 200m
+            memory: 300M
